@@ -1,7 +1,7 @@
 version: '2' 
 services:
   namenode:
-    image: bde2020/hadoop-namenode:1.1.0-hadoop2.8-java8
+    image: bde2020/hadoop-namenode:1.2.1-hadoop2.8.1-java8
     container_name: namenode
     volumes:
       - ./data/namenode:/hadoop/dfs/name
@@ -13,7 +13,7 @@ services:
       - 50070:50070
 
   datanode:
-    image: bde2020/hadoop-datanode:1.1.0-hadoop2.8-java8
+    image: bde2020/hadoop-datanode:1.2.1-hadoop2.8.1-java8
     depends_on: 
       - namenode
     volumes:
@@ -25,7 +25,7 @@ services:
 
   spark-master:
     build: ~/docker-spark/master
-    image: agentlab/spark-master:2.1.0-hadoop2.8-hive-java8
+    image: agentlab/spark-master:2.2.0-hadoop2.8.1-hive-java8
     container_name: spark-master
     ports:
       - 8080:8080
@@ -35,7 +35,7 @@ services:
 
   spark-worker:
     build: ~/docker-spark/worker
-    image: agentlab/spark-worker:2.1.0-hadoop2.8-hive-java8
+    image: agentlab/spark-worker:2.2.0-hadoop2.8.1-hive-java8
     depends_on:
       - spark-master
     environment:
